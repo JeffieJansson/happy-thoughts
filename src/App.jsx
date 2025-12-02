@@ -1,5 +1,12 @@
-export const App = () => {
+import React from 'react'
+import { ThoughtForm } from './components/ThoughtForm'
+import { ThoughtList } from './components/ThoughtList'
+
+export function App() {
   return (
-    <h1>Happy Thoughts</h1>
+    <main className="app">
+      <ThoughtForm />
+      <ThoughtList />
+    </main>
   )
 }

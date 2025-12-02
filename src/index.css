@@ -1,3 +1,37 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+* { 
+  box-sizing: 
+  border-box; 
 }
+
+body { 
+  margin:0; 
+  font-family: 
+  system-ui, Arial, sans-serif; 
+  background:#fff; 
+}
+
+.app { 
+  max-width:600px; 
+  margin:28px auto; 
+  padding:12px; 
+}
+
+.thought-form, .thought-card { 
+  background:#F2F0F0; 
+  padding:18px; 
+  border-radius:6px; 
+  box-shadow:8px 8px 0 rgba(0,0,0,0.1); 
+  margin-bottom:18px; 
+}
+
+textarea { 
+  width:100%; 
+  min-height:64px; 
+}
+
+.form-row {
+   display:flex; 
+   justify-content:space-between; 
+   align-items:center; 
+   margin-top:12px; 
+  }
