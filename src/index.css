@@ -1,32 +1,72 @@
-* { 
-  box-sizing: 
-  border-box; 
+:root {
+  --page-bg: #ffffff;
+  --card-bg: #F2F0F0;
+  --thought-bg: white;
+  --border: #7B7B7B;
+  --button: #FFADAD;
+  --shadow-color: rgba(0, 0, 0, 1);
+  --text: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure full height for body/root */
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body { 
   margin:0; 
-  font-family: 
-  system-ui, Arial, sans-serif; 
-  background:#fff; 
+  font-family: font-family, system-ui, Arial, sans-serif;
+  background:var(--page-bg); 
+  color: var(--text);
 }
 
+/*App container*/
 .app { 
   max-width:600px; 
   margin:28px auto; 
   padding:12px; 
 }
 
-.thought-form, .thought-card { 
+/* -------------------------------------------------------------
+   FORM CARD
+   ------------------------------------------------------------- */
+
+.thought-form { 
   background:#F2F0F0; 
   padding:18px; 
-  border-radius:6px; 
-  box-shadow:8px 8px 0 rgba(0,0,0,0.1); 
-  margin-bottom:18px; 
+  border: 2px solid var(--border); 
+  box-shadow: 8px 8px 0 var(--shadow-color); 
+  margin-bottom: 24px; 
 }
 
-textarea { 
-  width:100%; 
-  min-height:64px; 
+/* Textarea layout: doesn't overflow, limited height, vertical resize only */
+.thought-form textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  min-height: 64px;
+  max-height: 160px;
+  resize: vertical;
+  background: #fff;
+  overflow: auto;
+}
+
+/* Label style inside form */
+.thought-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 15px;
 }
 
 .form-row {
@@ -34,4 +74,58 @@ textarea {
    justify-content:space-between; 
    align-items:center; 
    margin-top:12px; 
+   gap: 12px;
   }
+
+  /* Submit button*/
+.send-button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 26px;
+  background: var(--button);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------
+   LIST & CARD
+   ------------------------------------------------------------- */
+
+   /* Container for the list of thoughts */
+.thought-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Each thought card styling */
+.thought-card {
+  background: #fff;
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+/* Message text inside the card */
+.thought-message {
+  margin: 0 0 10px 0;
+  font-size: 17px;
+  white-space: pre-wrap;
+}
+
+/* Footer inside the card */
+.thought-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 13px;
+  overflow-wrap: break-word;
+}
+
+/* Empty list helper text */
+.empty-text {
+  color: #666;
+  padding: 10px;
+}
