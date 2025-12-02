@@ -3,15 +3,26 @@ import { useState } from 'react'
 //make ThoughtForm controlled with useState
 export const ThoughtForm = ({ onAdd }) => {
   const [text, setText] = useState('')
+  
+  //input change handler to update text state
+  const handleInputChange = (e) => {
+    setText(e.target.value)
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!text.trim()) return
-    onAdd(text.trim())
+  //function to reset form
+  const resetForm = () => {
     setText('')
   }
 
   //submit handler to call onAdd with text and reset text state
+  const handleSubmit = (e) => {
+    e.preventDefault() 
+    if (!text.trim()) return
+    onAdd(text.trim())
+    resetForm('')
+  }
+
+  //render form with textarea and submit button
   return (
     <section className="thought-form">
       <form onSubmit={handleSubmit}>
@@ -20,7 +31,7 @@ export const ThoughtForm = ({ onAdd }) => {
         <textarea
           id="thought-input"
           value={text}
-          onChange={(e)=>setText(e.target.value)}
+          onChange={handleInputChange}
           placeholder="React is making me happy!"
         />
         <div className="form-row">
@@ -28,7 +39,7 @@ export const ThoughtForm = ({ onAdd }) => {
           <button 
           type="submit" 
           className="send-button" 
-          disabled={!text.trim()}>
+          disabled={!text.trim()}> {/* disable button if text is empty */}
           ❤️ Send Happy Thought ❤️
           </button>
         </div>
