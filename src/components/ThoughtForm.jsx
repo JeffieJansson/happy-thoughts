@@ -37,6 +37,13 @@ export const ThoughtForm = ({ onAdd }) => {
       />
 
       <div className="form-row">
+        <button 
+            type="submit"
+            disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
+            className="send-button"
+            >
+              ❤️ Send Happy Thought ❤️
+        </button>
           <p
             id="char-count"
             className={`char-count ${isOverLimit ? 'char-count--error' : ''}`} // add error class if over limit
@@ -46,14 +53,6 @@ export const ThoughtForm = ({ onAdd }) => {
               ? `Exceeded by ${text.length - CHAR_LIMIT} characters`
               : `${remaining} characters remaining`}
           </p>
-
-        <button 
-            type="submit"
-            disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
-            className="send-button"
-            >
-              ❤️ Send Happy Thought ❤️
-        </button>
       </div>
     </form>
     </section>
