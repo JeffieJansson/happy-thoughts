@@ -2,7 +2,6 @@ import { useState } from 'react'
 
 const CHAR_LIMIT = 140
 
-
 //make ThoughtForm controlled with useState
 export const ThoughtForm = ({ onAdd }) => {
   const [text, setText] = useState('')
@@ -38,16 +37,16 @@ export const ThoughtForm = ({ onAdd }) => {
         <textarea
           id="thought-input"
           value={text}
-          onChange={handleInputChange}
+          onChange={handleInputChange} // make textarea controlled
           placeholder="React is making me happy!"
         />
         <div className="form-row">
              <p
-            className={`char-count ${isOverLimit ? 'char-count--error' : ''}`}
-            aria-live={isOverLimit ? "assertive" : "polite"}
+            className={`char-count ${isOverLimit ? 'char-count--error' : ''}`} // add error class if over limit
+            aria-live={isOverLimit ? "assertive" : "polite"} // announce changes for screen readers
           >
             {isOverLimit
-              ? `Character limit exceeded by ${text.length - CHAR_LIMIT} characters`
+              ? `Character limit exceeded by ${text.length - CHAR_LIMIT} characters` // show exceeded characters
               : `${remaining} characters remaining`}
           </p>
           
@@ -56,7 +55,6 @@ export const ThoughtForm = ({ onAdd }) => {
             disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
             className="send-button"
           >
-
             ❤️ Send Happy Thought ❤️
           </button>
         </div>

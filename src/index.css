@@ -148,6 +148,19 @@ body {
 
 }
 
+.thought-time {
+  font-size: 13px;
+  color: #666;
+  margin: 0;
+}
+
+/*
+.like-placeholder {
+  width: 24px; 
+  height: 24px;
+  display: inline-block;
+}
+  */
 
 /* Empty list helper text */
 .empty-text {
