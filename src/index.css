@@ -21,7 +21,7 @@ body,
 
 body { 
   margin:0; 
-  font-family: font-family, system-ui, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background:var(--page-bg); 
   color: var(--text);
 }
@@ -62,10 +62,10 @@ body {
 }
 
 /* Label style inside form */
-.thought-form label {
+.thought-form__label {
   display: block;
   margin-bottom: 8px;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -135,6 +135,7 @@ body {
 .thought-message {
   margin: 0 0 10px 0;
   font-size: 17px;
+  font-weight: 500;
   overflow-wrap: break-word;
 }
 
