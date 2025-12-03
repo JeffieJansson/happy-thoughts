@@ -5,60 +5,57 @@ const CHAR_LIMIT = 140
 //make ThoughtForm controlled with useState
 export const ThoughtForm = ({ onAdd }) => {
   const [text, setText] = useState('')
-  
-  //input change handler to update text state
-  const handleInputChange = (e) => {
-    setText(e.target.value)
-  }
-
-  //function to reset form
-  const resetForm = () => {
-    setText('')
-  }
-
-  //calculate if over character limit and remaining characters
+   //calculate if over character limit and remaining characters
   const isOverLimit = text.length > CHAR_LIMIT
   const remaining = CHAR_LIMIT - text.length
 
-  //submit handler to call onAdd with text and reset text state
+   const handleInputChange = (e) => {
+    setText(e.target.value)
+  }
+  
   const handleSubmit = (e) => {
-    e.preventDefault() 
-    if (!text.trim()) return
-    onAdd(text.trim())
-    resetForm('')
+    e.preventDefault()
+    const trimmed = text.trim()
+    if (!trimmed || isOverLimit) return
+    onAdd(trimmed)
+    setText('')
   }
 
-  //render form with textarea and submit button
   return (
     <section className="thought-form">
-      <form onSubmit={handleSubmit} className="thought-form-inner" noValidate>
-      
-        <label htmlFor="thought-input">What's making you happy right now?</label>
-        <textarea
-          id="thought-input"
-          value={text}
-          onChange={handleInputChange} // make textarea controlled
-          placeholder="React is making me happy!"
-        />
-        <div className="form-row">
-             <p
+    <form className="thought-form-inner" onSubmit={handleSubmit} noValidate>
+      <label htmlFor="thought-input" className="thought-form__label">
+        What's making you happy right now?
+      </label>
+
+      <textarea
+        id="thought-input"
+        value={text}
+        onChange={handleInputChange} // make textarea controlled
+        placeholder="React is making me happy!"
+        aria-describedby="char-count"
+      />
+
+      <div className="form-row">
+          <p
+            id="char-count"
             className={`char-count ${isOverLimit ? 'char-count--error' : ''}`} // add error class if over limit
             aria-live={isOverLimit ? "assertive" : "polite"} // announce changes for screen readers
           >
             {isOverLimit
-              ? `Character limit exceeded by ${text.length - CHAR_LIMIT} characters` // show exceeded characters
+              ? `Exceeded by ${text.length - CHAR_LIMIT} characters`
               : `${remaining} characters remaining`}
           </p>
-          
-          <button 
+
+        <button 
             type="submit"
             disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
             className="send-button"
-          >
-            ❤️ Send Happy Thought ❤️
-          </button>
-        </div>
-      </form>
+            >
+              ❤️ Send Happy Thought ❤️
+        </button>
+      </div>
+    </form>
     </section>
   )
 }
