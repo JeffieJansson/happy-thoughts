@@ -28,7 +28,7 @@ body {
 
 /*App container*/
 .app { 
-  max-width:600px; 
+  max-width:500px; 
   margin:28px auto; 
   padding:12px; 
 }
@@ -69,6 +69,11 @@ body {
   font-size: 15px;
 }
 
+/* Inner wrapper to keep spacing consistent */
+.thought-form-inner {
+  display: block;
+}
+
 .form-row {
    display:flex; 
    justify-content:space-between; 
@@ -76,6 +81,20 @@ body {
    margin-top:12px; 
    gap: 12px;
   }
+
+/* Character counter text */
+.char-count {
+  font-size: 13px;
+  color: #333;
+  margin: 12;
+  padding-left: 4px;
+}
+
+/* Character counter when user is over the limit */
+.char-count--error {
+  color: #d93025;
+  font-weight: 700;
+}
 
   /* Submit button*/
 .send-button {
@@ -87,6 +106,11 @@ body {
   font-weight: 700;
 }
 
+/* Disabled submit state */
+.send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
 /* -------------------------------------------------------------
    LIST & CARD
    ------------------------------------------------------------- */
@@ -111,7 +135,7 @@ body {
 .thought-message {
   margin: 0 0 10px 0;
   font-size: 17px;
-  white-space: pre-wrap;
+  overflow-wrap: break-word;
 }
 
 /* Footer inside the card */
@@ -121,8 +145,9 @@ body {
   align-items: center;
   color: #666;
   font-size: 13px;
-  overflow-wrap: break-word;
+
 }
+
 
 /* Empty list helper text */
 .empty-text {
