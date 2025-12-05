@@ -124,7 +124,7 @@ body {
 }
 
 /* Each thought card styling */
-.thought-card {
+.thought {
   background: #fff;
   padding: 18px;
   border: 1px solid var(--border);
@@ -132,7 +132,7 @@ body {
 }
 
 /* Message text inside the card */
-.thought-message {
+.message {
   margin: 0 0 10px 0;
   font-size: 17px;
   font-weight: 500;
@@ -140,7 +140,7 @@ body {
 }
 
 /* Footer inside the card */
-.thought-footer {
+.meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,9 +152,12 @@ body {
 .thought-time {
   font-size: 13px;
   color: #666;
-  margin: 0;
+  
 }
-
+.hearts {
+  margin-inline-end: auto;
+  padding: 10px;
+}
 /*
 .like-placeholder {
   width: 24px; 
