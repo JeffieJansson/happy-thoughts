@@ -10,9 +10,9 @@ export const ThoughtCard = ({ thought, onLike }) => {
           onClick={() => onLike && onLike(thought._id)}
           aria-label="Like"
         >
-          ❤️
+          <img src="./heart.png" alt="heart icon" className="hearts" />
         </button>
-        <span className="hearts">x{thought.hearts}</span>
+        <span className="likes">x{thought.hearts}</span>
         <span className="thought-time">{moment(thought.createdAt).fromNow()}</span>
       </div>
     </article>

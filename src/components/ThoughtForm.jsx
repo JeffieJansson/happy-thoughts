@@ -42,7 +42,7 @@ export const ThoughtForm = ({ onAdd }) => {
             disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
             className="send-button"
             >
-              ❤️ Send Happy Thought ❤️
+              <img src="./heart.png" alt="Heart icon" className='hearts' /> Send Happy Thought <img src="./heart.png" alt="Heart icon" className='hearts' />
         </button>
           <p
             id="char-count"

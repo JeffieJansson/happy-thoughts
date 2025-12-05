@@ -154,17 +154,28 @@ body {
   color: #666;
   
 }
-.hearts {
+.likes {
   margin-inline-end: auto;
   padding: 10px;
 }
-/*
-.like-placeholder {
-  width: 24px; 
-  height: 24px;
-  display: inline-block;
+.hearts {
+  width: 15px;
+  height: 15px;
+  
 }
-  */
+
+.like-button {
+  border: none;
+  border-radius: 50%;
+  padding: 12px 10px 7px 12px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.like-button:hover {
+  background-color: #FFADAD;
+}
+
 
 /* Empty list helper text */
 .empty-text {
