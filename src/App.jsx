@@ -56,7 +56,7 @@ const handleFormSubmit = (message) => {
 
 
 const handleLike = (thoughtId) => {
-    fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' }) //when liking, send POST to /:id/like endpoint
+    fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' }) //when liking, send POST to hearts endpoint
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Like request failed with status ${res.status}`)
