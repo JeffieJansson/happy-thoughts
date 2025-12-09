@@ -15,7 +15,7 @@ export function App() {
       .catch((error) => {
         console.error("Failed to fetch thoughts:", error)
       })
-  }, [])
+  }, []) // Empty dependency array means this runs once on mount
 
   const handleFormSubmit = (message) => {
     // Post new thought to the API
@@ -32,7 +32,7 @@ export function App() {
     likeThought(thoughtId)
       .then((updatedThought) => {
         // Update the specific thought in state
-        setThoughts((prev) => prev.map((t) => (t._id === updatedThought._id ? updatedThought : t)))
+        setThoughts((previousThoughts) => previousThoughts.map((thought) => (thought._id === updatedThought._id ? updatedThought : thought)))
       })
       .catch((error) => {
         console.error('Failed to like thought:', error)
