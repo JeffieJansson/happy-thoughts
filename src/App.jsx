@@ -1,67 +1,41 @@
 import React, { useState, useEffect } from 'react'
 import { ThoughtForm } from './components/ThoughtForm'
 import { ThoughtList } from './components/ThoughtList'
+import { fetchThoughts, postThought, likeThought } from './api'
 import './index.css'
 
-const API_URL = 'https://happy-thoughts-api-4ful.onrender.com/thoughts'
-
 export function App() {
-   // List of thoughts
+  // List of thoughts
   const [thoughts, setThoughts] = useState([])
 
   // Fetch existing thoughts when the component mounts
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => res.json())
+    fetchThoughts()
       .then((data) => setThoughts(data))
       .catch((error) => {
-
         console.error("Failed to fetch thoughts:", error)
       })
-  }, []) // dependency array empty to run only once on mount
-  
+  }, [])
 
-const handleFormSubmit = (message) => {
-// Post new thought to the API
-  fetch(API_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      message: message,
-    }),
-    headers: { "Content-Type": "application/json" },
-  })
-
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(`API request failed with status ${res.status}`);
-      }
-      return res.json();
-    })
-    
-    .then((newThought) => {
-      setThoughts((previousThoughts) => [newThought, ...previousThoughts])
-    }) 
-    .catch((error) => {
-      console.error("Failed to submit thought:", error);
-    });
-
-};
-
-
-const handleLike = (thoughtId) => {
-    fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' }) //when liking, send POST to hearts endpoint
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error(`Like request failed with status ${res.status}`)
-        }
-        return res.json()
+  const handleFormSubmit = (message) => {
+    // Post new thought to the API
+    postThought(message)
+      .then((newThought) => {
+        setThoughts((previousThoughts) => [newThought, ...previousThoughts])
       })
+      .catch((error) => {
+        console.error("Failed to submit thought:", error)
+      })
+  }
+
+  const handleLike = (thoughtId) => {
+    likeThought(thoughtId)
       .then((updatedThought) => {
         // Update the specific thought in state
-        setThoughts((prev) => prev.map((t) => (t._id === updatedThought._id ? updatedThought : t))) //replace old thought with updated one
+        setThoughts((prev) => prev.map((t) => (t._id === updatedThought._id ? updatedThought : t)))
       })
-      .catch((err) => {
-        console.error('Failed to like thought:', err)
+      .catch((error) => {
+        console.error('Failed to like thought:', error)
       })
   }
   return ( 
