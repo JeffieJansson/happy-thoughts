@@ -1,12 +1,14 @@
 import { useState } from 'react'
 
 const CHAR_LIMIT = 140
+const CHAR_MIN = 5
 
 //make ThoughtForm controlled with useState
 export const ThoughtForm = ({ onAdd }) => {
   const [text, setText] = useState('')
    //calculate if over character limit and remaining characters
   const isOverLimit = text.length > CHAR_LIMIT
+  const isTooShort = text.trim().length > 0 && text.trim().length < CHAR_MIN
   const remaining = CHAR_LIMIT - text.length
 
    const handleInputChange = (e) => {
@@ -16,7 +18,7 @@ export const ThoughtForm = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const trimmed = text.trim()
-    if (!trimmed || isOverLimit) return
+    if (!trimmed || isOverLimit || isTooShort) return
     onAdd(trimmed)
     setText('')
   }
@@ -39,18 +41,20 @@ export const ThoughtForm = ({ onAdd }) => {
       <div className="form-row">
         <button 
             type="submit"
-            disabled={!text.trim() || isOverLimit} // disable button if text is empty or over character limit
+            disabled={!text.trim() || isOverLimit || isTooShort} // disable button if text is empty, too short, or over character limit
             className="send-button"
             >
               <img src="./heart.png" alt="Heart icon" className='hearts' /> Send Happy Thought <img src="./heart.png" alt="Heart icon" className='hearts' />
         </button>
           <p
             id="char-count"
-            className={`char-count ${isOverLimit ? 'char-count--error' : ''}`} // add error class if over limit
-            aria-live={isOverLimit ? "assertive" : "polite"} // announce changes for screen readers
+            className={`char-count ${(isOverLimit || isTooShort) ? 'char-count--error' : ''}`} // add error class if over limit or too short
+            aria-live={(isOverLimit || isTooShort) ? "assertive" : "polite"} // announce changes for screen readers
           >
             {isOverLimit
               ? `Exceeded by ${text.length - CHAR_LIMIT} characters`
+              : isTooShort
+              ? `Minimum ${CHAR_MIN} characters required`
               : `${remaining} characters remaining`}
           </p>
       </div>
