@@ -19,13 +19,6 @@ export function App() {
         console.error("Failed to fetch thoughts:", error)
       })
   }, [])
-  // A small tick to force re-render so "time ago" updates automatically
-  const [tick, setTick] = useState(0) // initial tick value
-
-  useEffect(() => {
-    const id = setInterval(() => setTick(t => t + 1), 30000) // update every 30 seconds
-    return () => clearInterval(id)
-  }, [])
   
 
 const handleFormSubmit = (message) => {
@@ -74,7 +67,7 @@ const handleLike = (thoughtId) => {
   return ( 
     <main className="app">
       <ThoughtForm onAdd={handleFormSubmit} />
-      <ThoughtList thoughts={thoughts} tick={tick} onLike={handleLike} />
+      <ThoughtList thoughts={thoughts} onLike={handleLike} />
     </main>
   )
 }
