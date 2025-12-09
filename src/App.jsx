@@ -11,26 +11,19 @@ export function App() {
 
   // Fetch existing thoughts when the component mounts
   useEffect(() => {
-    fetch("https://happy-thoughts-api-4ful.onrender.com/thoughts")
+    fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setThoughts(data))
       .catch((error) => {
 
         console.error("Failed to fetch thoughts:", error)
       })
-  }, [])
-  // A small tick to force re-render so "time ago" updates automatically
-  const [tick, setTick] = useState(0) // initial tick value
-
-  useEffect(() => {
-    const id = setInterval(() => setTick(t => t + 1), 30000) // update every 30 seconds
-    return () => clearInterval(id)
-  }, [])
+  }, []) // dependency array empty to run only once on mount
   
 
 const handleFormSubmit = (message) => {
 // Post new thought to the API
-  fetch("https://happy-thoughts-api-4ful.onrender.com/thoughts", {
+  fetch(API_URL, {
     method: "POST",
     body: JSON.stringify({
       message: message,
@@ -74,7 +67,7 @@ const handleLike = (thoughtId) => {
   return ( 
     <main className="app">
       <ThoughtForm onAdd={handleFormSubmit} />
-      <ThoughtList thoughts={thoughts} tick={tick} onLike={handleLike} />
+      <ThoughtList thoughts={thoughts} onLike={handleLike} />
     </main>
   )
 }

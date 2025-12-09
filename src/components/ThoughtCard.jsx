@@ -1,4 +1,4 @@
-import moment from 'moment'
+import ReactTimeAgo from 'react-timeago'
 
 export const ThoughtCard = ({ thought, onLike }) => {
   return (
@@ -12,8 +12,10 @@ export const ThoughtCard = ({ thought, onLike }) => {
         >
           <img src="./heart.png" alt="heart icon" className="hearts" />
         </button>
-        <span className="likes">x{thought.hearts}</span>
-        <span className="thought-time">{moment(thought.createdAt).fromNow()}</span>
+        <span className="likes">x{thought.hearts ?? 0}</span>
+        <span className="thought-time">
+          {thought.createdAt ? <ReactTimeAgo date={thought.createdAt} /> : ''}
+        </span>
       </div>
     </article>
   )

@@ -1,12 +1,9 @@
 import { ThoughtCard } from './ThoughtCard'
 
-export const ThoughtList = ({ thoughts, tick, onLike }) => {
+export const ThoughtList = ({ thoughts, onLike }) => {
   // render list of ThoughtCard components or a message if empty
   return (
     <section className="thought-list">
-      {/* include tick so parent re-renders affect this component (keeps moment().fromNow() fresh) */}
-      <div style={{ display: 'none' }}>{tick}</div>
-
       {/* check if thoughts is empty */}
       {thoughts.length === 0 ? (
         <p className="empty-text">No happy thoughts yet — be the first!</p>
