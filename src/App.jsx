@@ -7,13 +7,22 @@ import './index.css'
 export function App() {
   // List of thoughts
   const [thoughts, setThoughts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   // Fetch existing thoughts when the component mounts
   useEffect(() => {
     fetchThoughts()
-      .then((data) => setThoughts(data))
+      .then((data) => {
+        setThoughts(data)
+        setError(null)
+      })
       .catch((error) => {
         console.error("Failed to fetch thoughts:", error)
+        setError("Failed to load thoughts. Please try again later.")
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }, []) // Empty dependency array means this runs once on mount
 
@@ -38,6 +47,15 @@ export function App() {
         console.error('Failed to like thought:', error)
       })
   }
+
+  if (loading) {
+    return <div className="loading">Loading happy thoughts...</div>
+  }
+
+  if (error) {
+    return <div className="error">{error}</div>
+  }
+
   return ( 
     <main className="app">
       <ThoughtForm onAdd={handleFormSubmit} />
