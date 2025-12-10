@@ -6,21 +6,36 @@ const CHAR_MIN = 5
 //make ThoughtForm controlled with useState
 export const ThoughtForm = ({ onAdd }) => {
   const [text, setText] = useState('')
+  const [error, setError] = useState(null)
    //calculate if over character limit and remaining characters
   const isOverLimit = text.length > CHAR_LIMIT
   const isTooShort = text.trim().length > 0 && text.trim().length < CHAR_MIN
   const remaining = CHAR_LIMIT - text.length
 
+  //validation function for enabling/disabling submit button
+  const isValid = () => {
+    const trimmedLength = text.trim().length
+    return trimmedLength >= CHAR_MIN && trimmedLength <= CHAR_LIMIT
+  }
+
    const handleInputChange = (e) => {
     setText(e.target.value)
+    if (error) setError(null) // Clear error when user starts typing
   }
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    const trimmed = text.trim()
-    if (!trimmed || isOverLimit || isTooShort) return
-    onAdd(trimmed)
+    if (!text.trim()) {
+      setError('Please write something!')
+      return
+    }
+    if (!isValid()) {
+      setError('Message must be between 5 and 140 characters')
+      return
+    }
+    onAdd(text.trim())
     setText('')
+    setError(null)
   }
 
   return (
@@ -41,7 +56,7 @@ export const ThoughtForm = ({ onAdd }) => {
       <div className="form-row">
         <button 
             type="submit"
-            disabled={!text.trim() || isOverLimit || isTooShort} // disable button if text is empty, too short, or over character limit
+            disabled={!isValid()} // disable button if validation fails
             className="send-button"
             >
               <img src="./heart.png" alt="Heart icon" className='hearts' /> Send Happy Thought <img src="./heart.png" alt="Heart icon" className='hearts' />
@@ -58,6 +73,7 @@ export const ThoughtForm = ({ onAdd }) => {
               : `${remaining} characters remaining`}
           </p>
       </div>
+      {error && <p className="error-message">{error}</p>}
     </form>
     </section>
   )
