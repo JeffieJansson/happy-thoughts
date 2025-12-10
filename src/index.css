@@ -170,10 +170,17 @@ body {
   padding: 12px 10px 7px 12px;
   cursor: pointer;
   font-size: 18px;
+  transition: background-color 0.2s ease;
 }
 
-.like-button:hover {
+.like-button:hover:not(:disabled) {
   background-color: #FFADAD;
+}
+
+.like-button.liked,
+.like-button:disabled {
+  background-color: #FFADAD;
+  cursor: not-allowed;
 }
 
 
@@ -181,4 +188,25 @@ body {
 .empty-text {
   color: #666;
   padding: 10px;
+}
+
+/* Error message styling */
+.error-message {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Loading and error states */
+.loading,
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.error {
+  color: #d93025;
 }
