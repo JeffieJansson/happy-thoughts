@@ -1,14 +1,24 @@
+import { useState } from 'react'
 import ReactTimeAgo from 'react-timeago'
 
 export const ThoughtCard = ({ thought, onLike }) => {
+  const [hasLiked, setHasLiked] = useState(false)
+
+  const handleLike = () => {
+    if (hasLiked) return // Prevent multiple likes
+    setHasLiked(true)
+    if (onLike) onLike(thought._id)
+  }
+
   return (
     <article className="thought">
       <p className="message">{thought.message}</p>
       <div className="meta">
         <button
-          className="like-button"
-          onClick={() => onLike && onLike(thought._id)}
-          aria-label="Like"
+          className={`like-button ${hasLiked ? 'liked' : ''}`}
+          onClick={handleLike}
+          aria-label={`Like this thought (${thought.hearts ?? 0} likes)`} // make sure screen readers get updated like count
+          disabled={hasLiked}
         >
           <img src="./heart.png" alt="heart icon" className="hearts" />
         </button>
