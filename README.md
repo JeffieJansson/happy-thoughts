@@ -34,7 +34,6 @@ Happy Thoughts is a React application that allows users to share what makes them
 - ✅ **Validation Error Messages**: User-friendly error messages for invalid input (empty, too short, too long)
 - ✅ **Loading States**: Loading indicators during API calls with error handling
 - ❌ Animation for new thoughts - not implemented
-
 - ❌ Keep count av different liked posts + localStorage - not implemented
 
 ## 🛠️ Technologies Used
@@ -42,7 +41,7 @@ Happy Thoughts is a React application that allows users to share what makes them
 - **React** - Frontend framework with hooks (useState, useEffect)
 - **react-timeago** - Automatic relative timestamps ("2 minutes ago")
 - **Fetch API** - HTTP requests to backend
-- **CSS3** - Styling with responsive design
+- **CSS3** - Vanilla css for styling in this project
 - **Vite** - Build tool and development server
 
 ## Component Architecture
