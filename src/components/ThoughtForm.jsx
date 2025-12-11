@@ -22,6 +22,12 @@ export const ThoughtForm = ({ onAdd }) => {
     return trimmedLength >= CHAR_MIN && trimmedLength <= CHAR_LIMIT // Valid if within min and max
   }
 
+  //if empty textarea button should be able to submit to show error
+  const shouldDisableButton = () => {
+    if (text.length === 0) return false // Enable button when empty to allow error display
+    return isTooShort || isOverLimit // Disable only when actually typing invalid length
+  }
+
   // === EVENT HANDLERS ===
    const handleInputChange = (e) => { // Handles textarea input changes
     setText(e.target.value) // Update state with current textarea value
@@ -75,7 +81,7 @@ export const ThoughtForm = ({ onAdd }) => {
       <div className="form-row">
         <button 
           type="submit"
-          disabled={!isValid()} // Disable when validation fails (prevents submission)
+          disabled={shouldDisableButton()} // Disable only when too short/long, not when empty
           className="send-button"
             >
         <img src="./heart.png" alt="Heart icon" className='hearts' /> 
