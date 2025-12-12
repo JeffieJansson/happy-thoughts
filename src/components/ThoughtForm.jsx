@@ -12,30 +12,30 @@ export const ThoughtForm = ({ onAdd }) => {
   const [error, setError] = useState(null)
   
   // === REAL-TIME VALIDATION CALCULATIONS ===
-  const isOverLimit = text.length > CHAR_LIMIT //isOverLimit: Check if user exceeded the character limit
-  const isTooShort = text.trim().length > 0 && text.trim().length < CHAR_MIN  // isTooShort: Check if text exists but is too short
-  const remaining = CHAR_LIMIT - text.length // remaining: Characters left until limit
+  const isOverLimit = text.trim().length > CHAR_LIMIT
+  const isTooShort = text.trim().length > 0 && text.trim().length < CHAR_MIN
+  const remaining = CHAR_LIMIT - text.trim().length 
 
   // === VALIDATION FUNCTIONS ===
   const isValid = () => { // Checks if current text meets character requirements
-    const trimmedLength = text.trim().length // Length after trimming whitespace
+    const trimmedLength = text.trim().length 
     return trimmedLength >= CHAR_MIN && trimmedLength <= CHAR_LIMIT // Valid if within min and max
   }
 
   //if empty textarea button should be able to submit to show error
   const shouldDisableButton = () => {
-    if (text.length === 0) return false // Enable button when empty to allow error display
+    if (text.length === 0) return false 
     return isTooShort || isOverLimit // Disable only when actually typing invalid length
   }
 
   // === EVENT HANDLERS ===
-   const handleInputChange = (e) => { // Handles textarea input changes
+  const handleInputChange = (e) => { // Handles textarea input changes
     setText(e.target.value) // Update state with current textarea value
-    if (error) setError(null) // Clear error to give user fresh start
+    if (error) setError(null) 
   }
   
   const handleSubmit = (e) => { // Handles form submission
-    e.preventDefault() // Stop browser from reloading page
+    e.preventDefault()
     
     // first validation: Check if empty after trimming
     if (!text.trim()) { 
@@ -52,7 +52,7 @@ export const ThoughtForm = ({ onAdd }) => {
     // All validations passed - submit and reset
     onAdd(text.trim()) // Send trimmed text to parent (App.jsx)
     setText('') // Clear textarea for next thought
-    setError(null) // Clear any lingering error
+    setError(null) 
   }
 
   // === RENDER ===
@@ -75,6 +75,7 @@ export const ThoughtForm = ({ onAdd }) => {
         onChange={handleInputChange} // Every keystroke updates state
         placeholder="React is making me happy!"
         aria-describedby="char-count" // Links to character counter for screen readers
+        aria-invalid={isOverLimit || isTooShort}
       />
 
       {/* Submit Button and Character Counter Row */}
@@ -97,7 +98,7 @@ export const ThoughtForm = ({ onAdd }) => {
           >
         {/* three different messages: */}
         {isOverLimit
-          ? `Exceeded by ${text.length - CHAR_LIMIT} characters` // Over limit
+          ? `Exceeded by ${text.trim().length - CHAR_LIMIT} characters` // Over limit
           : isTooShort
           ? `Minimum ${CHAR_MIN} characters required` // Too short
           : `${remaining} characters remaining`} {/* Normal state */}
@@ -105,7 +106,7 @@ export const ThoughtForm = ({ onAdd }) => {
       </div>
       
       {/* Conditional rendering: only shows when error exists */}
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className="error-message" role="alert" aria-live="assertive">{error}</p>}
     </form>
     </section>
   )

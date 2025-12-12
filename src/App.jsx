@@ -11,21 +11,21 @@ export function App() {
   const [error, setError] = useState(null)
 
   // === INITIAL DATA FETCH ===
-  
-  useEffect(() => { // Runs once on component mount
-    fetchThoughts() // Fetch thoughts from API
+  useEffect(() => { // Runs once when component mounts
+    fetchThoughts()
       .then((data) => {
         setThoughts(data) // Populate thoughts array with API data
         setError(null) // Clear any previous errors
       })
       .catch((error) => {
-        console.error("Failed to fetch thoughts:", error) // Log for debugging
+        console.error("Failed to fetch thoughts:", error) 
         setError("Failed to load thoughts. Please try again later.") // User-friendly message
       })
       .finally(() => { // ensure loading stops regardless of success or failure
         setLoading(false) // Stop loading whether success or failure
       })
   }, []) // Empty array = run only once on mount, never re-run
+
 
   // === EVENT HANDLERS ===
 
@@ -55,7 +55,6 @@ export function App() {
   }
 
   // === CONDITIONAL RENDERING ===
- 
   if (loading) {
     return <div className="loading">Loading happy thoughts...</div>
   }
@@ -65,7 +64,6 @@ export function App() {
   }
 
   // === MAIN RENDER ===
- 
   return ( 
     <main className="app">
       <ThoughtForm onAdd={handleFormSubmit} />

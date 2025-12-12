@@ -1,8 +1,6 @@
 const API_URL = 'https://happy-thoughts-api-4ful.onrender.com/thoughts'
 
-// handleResponse checks if the HTTP response was successful (status 200-299).
-// If successful, it parses and returns the JSON data.
-// If failed, it throws an error with the status code.
+// handleResponse - Helper function to handle API responses: throws an error on failure, returns JSON on success.
 async function handleResponse(response) { 
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`)
@@ -30,6 +28,6 @@ export async function postThought(message) {
  // likeThought makes a POST request to the like endpoint.
 // The backend increments the hearts counter and returns the updated thought.
 export async function likeThought(thoughtId) {
-  const res = await fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' })
+  const res = await fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' }) // POSTs to /:id/like.
   return handleResponse(res)
 }
