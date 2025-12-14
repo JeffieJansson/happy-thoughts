@@ -64,14 +64,18 @@ App.jsx (Main container)
 
 ```
 src/
-├── api.js              # API wrapper with error handling
-├── App.jsx             # Main component with state management
-├── index.css           # Global styles
-├── main.jsx            # App entry point
+├── api.js            
+├── App.jsx            
+├── main.jsx            
 └── components/
-    ├── ThoughtForm.jsx  # Form for creating thoughts
-    ├── ThoughtList.jsx  # Container for thought cards
-    └── ThoughtCard.jsx  # Individual thought display
+    ├── ThoughtForm.jsx 
+    ├── ThoughtList.jsx  
+    └── ThoughtCard.jsx  
+└── styles/
+├── index.css          
+├── ThoughtForm.css           
+├── ThoughtList.css          
+├── ThoughtCard.css           
 ```
 
 ## Key Implementation Details
@@ -101,12 +105,6 @@ src/
 - aria-live regions for dynamic content updates
 - Semantic HTML structure
 
-## Code Quality
-
-- **DRY Principles**: No code duplication, reusable helper functions
-- **Clean Code**: Descriptive variable names, consistent formatting
-- **Well-Commented**: JSDoc-style documentation and inline comments
-- **Error-Free**: No lint errors or warnings
 
 ---
 
