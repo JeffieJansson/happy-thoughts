@@ -11,7 +11,7 @@ Happy Thoughts is a React application that allows users to share what makes them
 - **Post Happy Thoughts**: Share what makes you happy with a simple form
 - **Character Counter**: Real-time feedback showing remaining characters (turns red when exceeding limit)
 - **Validation**: Friendly error messages for empty, too short, or too long messages
-- **Like Thoughts**: Heart button to like others' thoughts (with spam prevention)
+- **Like Thoughts**: Heart button to like others' thoughts (only once per session, spam prevention)
 - **Loading States**: User-friendly loading indicators during API calls
 - **Responsive Design**: Works seamlessly from mobile (320px) to desktop (1600px+)
 - **Accessibility**: ARIA labels and live regions for screen reader support
@@ -28,7 +28,7 @@ Happy Thoughts is a React application that allows users to share what makes them
 - ✅ **Display Message & Likes**: Shows thought content and like count for each thought
 - ✅ **Like Functionality**: Heart button that sends likes and updates count in real-time
 
-### Stretch Goals (3/5 - Minimum 2 Required) ✅
+### Stretch Goals (3/5 - Minimum 2 Required) 
 
 - ✅ **Character Counter**: Live count of remaining characters, turns red when over 140
 - ✅ **Validation Error Messages**: User-friendly error messages for invalid input (empty, too short, too long)
@@ -36,12 +36,12 @@ Happy Thoughts is a React application that allows users to share what makes them
 - ❌ Animation for new thoughts - not implemented
 - ❌ Keep count av different liked posts + localStorage - not implemented
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 - **React** - Frontend framework with hooks (useState, useEffect)
 - **react-timeago** - Automatic relative timestamps ("2 minutes ago")
 - **Fetch API** - HTTP requests to backend
-- **CSS3** - Vanilla css for styling in this project
+- **CSS** - Vanilla css for styling in this project
 - **Vite** - Build tool and development server
 
 ## Component Architecture
@@ -85,7 +85,7 @@ src/
 - Minimum 5 characters, maximum 140 characters
 - Real-time validation with visual feedback
 - Submit button disabled only when typing invalid length (not when empty)
-- Trim whitespace before submission
+- Trim whitespace before submission (     hey) becomes (hey)
 
 ### State Management
 
@@ -105,7 +105,5 @@ src/
 - aria-live regions for dynamic content updates
 - Semantic HTML structure
 
-
 ---
-
 Built with ❤️ as part of Technigo Bootcamp
