@@ -1,5 +1,5 @@
 .thought-form {
-  background: #F2F0F0;
+  background: var(--card-bg);
   padding: 18px;
   border: 2px solid var(--border);
   box-shadow: 8px 8px 0 var(--shadow-color);
@@ -17,7 +17,7 @@
   min-height: 64px;
   max-height: 160px;
   resize: vertical;
-  background: #fff;
+  background: var(--thought-bg);
   overflow: auto;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .char-count--error {
-  color: #d93025;
+  color: var(--error);
   font-weight: 700;
 }
 
@@ -67,7 +67,7 @@
 }
 
 .error-message {
-  color: #d93025;
+  color: var(--error);
   font-size: 13px;
   margin-top: 8px;
   font-weight: 500;

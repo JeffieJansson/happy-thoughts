@@ -6,6 +6,8 @@
   --button: #FFADAD;
   --shadow-color: rgba(0, 0, 0, 1);
   --text: black;
+  --error: #d93025;
+  --meta: #666;
 }
 
 * {
@@ -41,9 +43,9 @@ body {
   text-align: center;
   padding: 40px 20px;
   font-size: 16px;
-  color: #666;
+  color: var(--meta);
 }
 
 .error {
-  color: #d93025;
+  color: var(--error);
 }

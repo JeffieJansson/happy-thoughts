@@ -24,7 +24,7 @@ export const ThoughtCard = ({ thought, onLike }) => {
           aria-label={`Like this thought (${thought.hearts ?? 0} likes)`}
           disabled={hasLiked} // Disable button if already liked in this session
         >
-          <img src="/heart.png" alt="heart icon" className="hearts" />
+          <img src="./heart.png" alt="heart icon" className="hearts" />
         </button>
         
           {/* Like Count Display */}

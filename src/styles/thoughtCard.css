@@ -1,5 +1,5 @@
 .thought {
-  background: #fff;
+  background: var(--thought-bg);
   padding: 18px;
   border: 1px solid var(--border);
   box-shadow: 8px 8px 0 var(--shadow-color);
@@ -16,13 +16,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #666;
+  color: var(--meta);
   font-size: 13px;
 }
 
 .thought-time {
   font-size: 13px;
-  color: #666;
+  color: var(--meta);
 }
 
 .likes {
@@ -40,11 +40,11 @@
 }
 
 .like-button:hover:not(:disabled) {
-  background-color: #FFADAD;
+  background-color: var(--button);
 }
 
 .like-button.liked,
 .like-button:disabled {
-  background-color: #FFADAD;
+  background-color: var(--button);
   cursor: not-allowed;
 }

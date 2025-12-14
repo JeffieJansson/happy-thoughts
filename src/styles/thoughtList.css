@@ -6,6 +6,6 @@
 }
 
 .empty-text {
-  color: #666;
+  color: var(--meta);
   padding: 10px;
 }
