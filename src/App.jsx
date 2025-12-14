@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { ThoughtForm } from './components/ThoughtForm'
 import { ThoughtList } from './components/ThoughtList'
 import { fetchThoughts, postThought, likeThought } from './api'
-import './index.css'
 
 export function App() {
   // === STATE MANAGEMENT ===

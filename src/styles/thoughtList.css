@@ -1,0 +1,11 @@
+.thought-list {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.empty-text {
+  color: #666;
+  padding: 10px;
+}

@@ -1,0 +1,49 @@
+:root {
+  --page-bg: #ffffff;
+  --card-bg: #F2F0F0;
+  --thought-bg: white;
+  --border: #7B7B7B;
+  --button: #FFADAD;
+  --shadow-color: rgba(0, 0, 0, 1);
+  --text: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 500px;
+  margin: 28px auto;
+  padding: 12px;
+}
+
+.hearts {
+  width: 15px;
+  height: 15px;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 16px;
+  color: #666;
+}
+
+.error {
+  color: #d93025;
+}

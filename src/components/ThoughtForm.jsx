@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import '../styles/thoughtForm.css'
 
 // === VALIDATION CONSTANTS ===
 const CHAR_LIMIT = 140 // Maximum characters (Twitter-style limit)

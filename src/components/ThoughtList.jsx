@@ -1,4 +1,5 @@
 import { ThoughtCard } from './ThoughtCard'
+import '../styles/thoughtList.css'
 
 export const ThoughtList = ({ thoughts, onLike }) => { // Receives array of thoughts and onLike handler as props
   return (

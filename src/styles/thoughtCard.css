@@ -1,0 +1,50 @@
+.thought {
+  background: #fff;
+  padding: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+}
+
+.message {
+  margin: 0 0 10px 0;
+  font-size: 17px;
+  font-weight: 500;
+  overflow-wrap: break-word;
+}
+
+.meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #666;
+  font-size: 13px;
+}
+
+.thought-time {
+  font-size: 13px;
+  color: #666;
+}
+
+.likes {
+  margin-inline-end: auto;
+  padding: 10px;
+}
+
+.like-button {
+  border: none;
+  border-radius: 50%;
+  padding: 12px 10px 7px 12px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.2s ease;
+}
+
+.like-button:hover:not(:disabled) {
+  background-color: #FFADAD;
+}
+
+.like-button.liked,
+.like-button:disabled {
+  background-color: #FFADAD;
+  cursor: not-allowed;
+}

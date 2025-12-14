@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ReactTimeAgo from 'react-timeago'
+import '../styles/thoughtCard.css'
 
 export const ThoughtCard = ({ thought, onLike }) => {
 

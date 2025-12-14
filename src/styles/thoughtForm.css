@@ -1,0 +1,74 @@
+.thought-form {
+  background: #F2F0F0;
+  padding: 18px;
+  border: 2px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow-color);
+  margin-bottom: 24px;
+}
+
+.thought-form textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.4;
+  min-height: 64px;
+  max-height: 160px;
+  resize: vertical;
+  background: #fff;
+  overflow: auto;
+}
+
+.thought-form__label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.thought-form-inner {
+  display: block;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  gap: 12px;
+}
+
+.char-count {
+  font-size: 13px;
+  color: #333;
+  margin: 12px;
+  padding-left: 4px;
+}
+
+.char-count--error {
+  color: #d93025;
+  font-weight: 700;
+}
+
+.send-button {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 26px;
+  background: var(--button);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #d93025;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 500;
+}
