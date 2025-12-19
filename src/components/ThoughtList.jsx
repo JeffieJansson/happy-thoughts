@@ -1,10 +1,10 @@
 import { ThoughtCard } from './ThoughtCard'
 import '../styles/thoughtList.css'
 
-export const ThoughtList = ({ thoughts, onLike }) => { // Receives array of thoughts and onLike handler as props
+export const ThoughtList = ({ thoughts, onLike }) => { 
   return (
     <section className="thought-list">
-      {thoughts.length === 0 ? (  // Check if thoughts array is empty
+      {thoughts.length === 0 ? (  
         <p className="empty-text">No happy thoughts yet — be the first!</p>  // Empty State: Show message when no thoughts exist yet
       ) : (
         thoughts.map(thought => ( 

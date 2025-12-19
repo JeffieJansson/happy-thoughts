@@ -4,47 +4,44 @@ import { ThoughtList } from './components/ThoughtList'
 import { fetchThoughts, postThought, likeThought } from './api'
 
 export function App() {
-  // === STATE MANAGEMENT ===
   const [thoughts, setThoughts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // === INITIAL DATA FETCH ===
-  useEffect(() => { // Runs once when component mounts
+
+  useEffect(() => { 
     fetchThoughts()
       .then((data) => {
-        setThoughts(data) // Populate thoughts array with API data
-        setError(null) // Clear any previous errors
+        setThoughts(data) 
+        setError(null) 
       })
       .catch((error) => {
         console.error("Failed to fetch thoughts:", error) 
-        setError("Failed to load thoughts. Please try again later.") // User-friendly message
+        setError("Failed to load thoughts. Please try again later.") 
       })
-      .finally(() => { // ensure loading stops regardless of success or failure
-        setLoading(false) // Stop loading whether success or failure
+      .finally(() => { 
+        setLoading(false) 
       })
-  }, []) // Empty array = run only once on mount, never re-run
+  }, []) 
 
 
-  // === EVENT HANDLERS ===
-
-  const handleFormSubmit = (message) => {  //handleFormSubmit handles new thought submissions from ThoughtForm
-    postThought(message) // Send POST request to API
-      .then((newThought) => { // Receive newly created thought from API
-        setThoughts((previousThoughts) => [newThought, ...previousThoughts]) // Prepend new thought to existing array
+  const handleFormSubmit = (message) => {  
+    postThought(message) 
+      .then((newThought) => { 
+        setThoughts((previousThoughts) => [newThought, ...previousThoughts]) 
       })
-      .catch((error) => { // if POST fails catch the error and log it
+      .catch((error) => { 
         console.error("Failed to submit thought:", error)
       })
   }
 
-  // handleLike processes like actions from ThoughtCard components
-  const handleLike = (thoughtId) => { // Receives the ID of the thought to like
-    likeThought(thoughtId) // Send POST request to like endpoint
+  
+  const handleLike = (thoughtId) => { 
+    likeThought(thoughtId) 
       .then((updatedThought) => {
-        setThoughts((previousThoughts) => // Update thoughts state with new like count
-          previousThoughts.map((thought) => // Map over existing thoughts
-            thought._id === updatedThought._id ? updatedThought : thought // Replace only the liked thought with updated data
+        setThoughts((previousThoughts) => 
+          previousThoughts.map((thought) =>
+            thought._id === updatedThought._id ? updatedThought : thought
           )
         )
       })
@@ -53,7 +50,6 @@ export function App() {
       })
   }
 
-  // === CONDITIONAL RENDERING ===
   if (loading) {
     return <div className="loading">Loading happy thoughts...</div>
   }
@@ -62,7 +58,6 @@ export function App() {
     return <div className="error">{error}</div>
   }
 
-  // === MAIN RENDER ===
   return ( 
     <main className="app">
       <ThoughtForm onAdd={handleFormSubmit} />
