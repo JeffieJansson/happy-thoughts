@@ -1,4 +1,4 @@
-const API_URL = 'https://happy-thoughts-api-4ful.onrender.com/thoughts'
+const API_URL = 'https://ht-api-ij7j.onrender.com/thoughts'
 
 async function handleResponse(response) { 
   if (!response.ok) {

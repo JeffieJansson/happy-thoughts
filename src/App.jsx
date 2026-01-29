@@ -12,7 +12,7 @@ export function App() {
   useEffect(() => { 
     fetchThoughts()
       .then((data) => {
-        setThoughts(data) 
+        setThoughts(data.response) 
         setError(null) 
       })
       .catch((error) => {
