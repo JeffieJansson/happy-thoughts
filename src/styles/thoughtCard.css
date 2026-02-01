@@ -1,8 +1,10 @@
 .thought {
+  padding-top: 32px;
   background: var(--thought-bg);
   padding: 18px;
   border: 1px solid var(--border);
   box-shadow: 8px 8px 0 var(--shadow-color);
+  position: relative;
 }
 
 .message {
@@ -10,6 +12,7 @@
   font-size: 17px;
   font-weight: 500;
   overflow-wrap: break-word;
+  padding-right: 50px; 
 }
 
 .meta {
@@ -47,4 +50,38 @@
 .like-button:disabled {
   background-color: var(--button);
   cursor: not-allowed;
+}
+
+.edit-button,
+.delete-button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.2s ease;
+
+}
+
+.thought-actions {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  gap: 5px;
+  z-index: 1;
+}
+
+input {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
+
+.save-button,
+.cancel-button {
+  border: none;
+  padding: 6px 12px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
 }
