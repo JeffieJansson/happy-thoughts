@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { ThoughtForm } from './components/ThoughtForm'
 import { ThoughtList } from './components/ThoughtList'
-import { fetchThoughts, postThought, likeThought } from './api'
+import { fetchThoughts, postThought, likeThought, deleteThought, editThought } from './api'
 
 export function App() {
   const [thoughts, setThoughts] = useState([])
@@ -27,8 +27,8 @@ export function App() {
 
   const handleFormSubmit = (message) => {  
     postThought(message) 
-      .then((newThought) => { 
-        setThoughts((previousThoughts) => [newThought, ...previousThoughts]) 
+      .then((data) => { 
+        setThoughts((previousThoughts) => [data.response, ...previousThoughts]) 
       })
       .catch((error) => { 
         console.error("Failed to submit thought:", error)
@@ -38,10 +38,10 @@ export function App() {
   
   const handleLike = (thoughtId) => { 
     likeThought(thoughtId) 
-      .then((updatedThought) => {
+      .then((data) => {
         setThoughts((previousThoughts) => 
           previousThoughts.map((thought) =>
-            thought._id === updatedThought._id ? updatedThought : thought
+            thought._id === data.response._id ? data.response : thought
           )
         )
       })
@@ -50,6 +50,32 @@ export function App() {
       })
   }
 
+  const handleDelete = (thoughtId) => {
+    deleteThought(thoughtId)
+    .then(() => {
+      setThoughts((previousThoughts) => 
+        previousThoughts.filter((thought) => thought._id !== thoughtId)
+      )
+    })
+    .catch((error) => {
+      console.error('Failed to delete thought:', error)
+    })
+  }
+
+  const handleEditThought = (thoughtId, newMessage) => {
+    editThought(thoughtId, newMessage)
+    .then((data) => {
+      setThoughts((previousThoughts) => 
+        previousThoughts.map((thought) =>
+          thought._id === data.response._id ? data.response : thought
+        )
+      )
+    })
+    .catch((error) => {
+      console.error('Failed to edit thought:', error)
+    })
+  }
+4
   if (loading) {
     return <div className="loading">Loading happy thoughts...</div>
   }
@@ -60,8 +86,14 @@ export function App() {
 
   return ( 
     <main className="app">
-      <ThoughtForm onAdd={handleFormSubmit} />
-      <ThoughtList thoughts={thoughts} onLike={handleLike} />
+      <ThoughtForm 
+        onAdd={handleFormSubmit} />
+      <ThoughtList 
+        thoughts={thoughts} 
+        onLike={handleLike}
+        onDelete={handleDelete}
+        onEdit={handleEditThought}
+      />
     </main>
   )
 }
