@@ -21,7 +21,22 @@ export async function postThought(message) {
   return handleResponse(res)
 }
 
-export async function likeThought(thoughtId) {
-  const res = await fetch(`${API_URL}/${thoughtId}/like`, { method: 'POST' }) 
+export async function editThought(thoughtId, newMessage) {
+  const res = await fetch(`${API_URL}/${thoughtId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: newMessage }),
+  })
   return handleResponse(res)
 }
+
+export async function likeThought(thoughtId) {
+  const res = await fetch(`${API_URL}/${thoughtId}/like`, { method: 'PATCH' }) 
+  return handleResponse(res)
+}
+
+export async function deleteThought(thoughtId) { 
+  const res = await fetch(`${API_URL}/${thoughtId}`, { method: 'DELETE' })
+  return handleResponse(res)
+}
+
