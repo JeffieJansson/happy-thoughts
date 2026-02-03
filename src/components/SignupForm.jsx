@@ -12,6 +12,11 @@ export const SignupForm = ({ handleLogin }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!formData.email || !formData.password) {
+      setError("Please fill in both fields");
+      return;
+    }
+
     try {
       const response = await fetch(`${API_URL}/user/signup`, {
         method: "POST",
@@ -24,7 +29,7 @@ export const SignupForm = ({ handleLogin }) => {
         },
       });
 
-      
+    
       if (!response.ok && response.status > 499) {
         throw new Error("Server error.");
       }
@@ -79,7 +84,7 @@ export const SignupForm = ({ handleLogin }) => {
       </div>
 
       <button type="submit">Sign up</button>
-      {error && <p>{error}</p>}
+      {error && <p className="error-message" role="alert" aria-live="assertive">{error}</p>}
     </form>
   );
 };
