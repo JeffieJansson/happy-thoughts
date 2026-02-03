@@ -1,4 +1,4 @@
-const API_URL = 'https://ht-api-ij7j.onrender.com/thoughts'
+export const API_URL = 'https://ht-api-ij7j.onrender.com'
 
 async function handleResponse(response) { 
   if (!response.ok) {
@@ -7,36 +7,52 @@ async function handleResponse(response) {
   return response.json()
 }
 
+//fetch thoughts
 export async function fetchThoughts() { 
-  const res = await fetch(API_URL) 
+  const res = await fetch(`${API_URL}/thoughts`)
   return handleResponse(res)
 }
 
-export async function postThought(message) { 
-  const res = await fetch(API_URL, { 
+//post thought
+export async function postThought(message, token) { 
+  const res = await fetch(`${API_URL}/thoughts`, { 
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json',
+      Authorization: token
+    },
     body: JSON.stringify({ message }),
   })
   return handleResponse(res)
 }
 
-export async function editThought(thoughtId, newMessage) {
-  const res = await fetch(`${API_URL}/${thoughtId}`, {
+//edit thought
+export async function editThought(thoughtId, newMessage, token) {
+  const res = await fetch(`${API_URL}/thoughts/${thoughtId}`, {
     method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: token
+},
     body: JSON.stringify({ message: newMessage }),
   })
   return handleResponse(res)
 }
 
+//like thought
 export async function likeThought(thoughtId) {
-  const res = await fetch(`${API_URL}/${thoughtId}/like`, { method: 'PATCH' }) 
+  const res = await fetch(`${API_URL}/thoughts/${thoughtId}/like`, { method: 'PATCH' })
   return handleResponse(res)
 }
 
-export async function deleteThought(thoughtId) { 
-  const res = await fetch(`${API_URL}/${thoughtId}`, { method: 'DELETE' })
+//delete thought
+export async function deleteThought(thoughtId, token) { 
+  const res = await fetch(`${API_URL}/thoughts/${thoughtId}`, { 
+    method: 'DELETE',
+    headers: {
+      Authorization: token
+    }
+  })
   return handleResponse(res)
 }
 
