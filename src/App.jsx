@@ -13,7 +13,6 @@ export function App() {
   const [user, setUser] = useState(null)
   const [isSigningUp, setIsSigningUp] = useState(true);
 
-
   useEffect(() => { 
     fetchThoughts()
       .then((data) => {
@@ -65,11 +64,11 @@ export function App() {
 
   const handleDelete = (thoughtId) => {
     deleteThought(thoughtId, user?.accessToken)
-    .then(() => {
-      setThoughts((previousThoughts) => 
-        previousThoughts.filter((thought) => thought._id !== thoughtId)
+      .then(() => {
+        setThoughts((previousThoughts) => 
+          previousThoughts.filter((thought) => thought._id !== thoughtId)
       )
-      setError(null)
+        setError(null)
     })
     .catch((error) => {
       console.error('Failed to delete thought:', error)
@@ -79,13 +78,13 @@ export function App() {
 
   const handleEditThought = (thoughtId, newMessage) => {
     editThought(thoughtId, newMessage, user?.accessToken)
-    .then((data) => {
-      setThoughts((previousThoughts) => 
-        previousThoughts.map((thought) =>
+      .then((data) => {
+        setThoughts((previousThoughts) => 
+          previousThoughts.map((thought) =>
           thought._id === data.response._id ? data.response : thought
         )
       )
-      setError(null)
+        setError(null)
     })
     .catch((error) => {
       console.error('Failed to edit thought:', error)
@@ -102,6 +101,7 @@ export function App() {
     setUser(null)
     localStorage.removeItem('user')
   }
+
   if (loading) {
     return <div className="loading">Loading happy thoughts...</div>
   }
@@ -112,27 +112,25 @@ export function App() {
 
   return ( 
     <main className="app">
-        {user ? (
-          <button className="logout-button" onClick={handleLogout}>Logout</button>
-        ) : (
-        <div className="auth-container">
-           {isSigningUp ? (
-        <>
-          <SignupForm handleLogin={handleLogin} />
-          <span className="toggle-authform" onClick={() => setIsSigningUp(!isSigningUp)}>
-            Already have an account? Log in
-          </span>
-        </>
+      
+     <div className="thought-invite">
+      <h1>Spread some joy!</h1>
+      <p>Sign up or log in to post your happy thought and inspire others</p>
+     </div>
+
+      {user ? (
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
       ) : (
-        <>
-          <LoginForm handleLogin={handleLogin} />
-          <span className="toggle-authform" onClick={() => setIsSigningUp(!isSigningUp)}>
-            Don't have an account? Sign up
-          </span>
-        </>
+        <div className="auth-container">
+          {isSigningUp ? (
+            <LoginForm handleLogin={handleLogin} onToggleAuth={() => setIsSigningUp(false)} />
+          ) : (
+            <SignupForm handleLogin={handleLogin} onToggleAuth={() => setIsSigningUp(true)} />
+          )}
+        </div>
       )}
-    </div>
-  )}
+
+
 
     {user &&
       <ThoughtForm 
