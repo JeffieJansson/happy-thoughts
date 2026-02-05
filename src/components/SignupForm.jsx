@@ -2,7 +2,7 @@ import { useState } from "react";
 import { API_URL } from "../api";
 
 
-export const SignupForm = ({ handleLogin }) => {
+export const SignupForm = ({ handleLogin, onToggleAuth }) => {
   const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
@@ -30,18 +30,17 @@ export const SignupForm = ({ handleLogin }) => {
       });
 
     
-      if (!response.ok && response.status > 499) {
-        throw new Error("Server error.");
-      }
+    if (!response.ok && response.status > 499) {
+      throw new Error("Server error.");
+    }
 
       const resJson = await response.json();
-      
-      if (!resJson.success) {
-        throw new Error(resJson.message || "Failed to create user");
-      }
+
+    if (!resJson.success) {
+      throw new Error(resJson.message || "Failed to create user");
+    }
 
       handleLogin(resJson.response);
-
       // Reset form
       e.target.reset();
 
@@ -54,7 +53,6 @@ export const SignupForm = ({ handleLogin }) => {
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
@@ -84,7 +82,12 @@ export const SignupForm = ({ handleLogin }) => {
         </label>
       </div>
 
-      <button type="submit">Sign up</button>
+      <div className="auth-actions">
+        <button type="submit">Sign up</button>
+        <span className="toggle-authform" onClick={onToggleAuth}>
+          Already have an account? Log in
+        </span>
+      </div>
       {error && <p className="error-message">{error}</p>}
     </form>
   );
