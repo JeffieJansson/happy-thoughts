@@ -44,9 +44,8 @@ export const ThoughtForm = ({ onAdd }) => {
     setError(null) 
   }
 
-
   return (
-    <section className="thought-form">
+   <section className="thought-form">
     <form 
         className="thought-form-inner" 
         onSubmit={handleSubmit} 
@@ -89,11 +88,10 @@ export const ThoughtForm = ({ onAdd }) => {
           ? `Minimum ${CHAR_MIN} characters required` 
           : `${remaining} characters remaining`} 
         </p>
-      </div>
-      
+      </div>      
 
-      {error && <p className="error-message" role="alert" aria-live="assertive">{error}</p>}
+      {error && <p className="error-message" role="alert">{error}</p>}
     </form>
-    </section>
+   </section>
   )
 }
