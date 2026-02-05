@@ -31,7 +31,7 @@ export function App() {
   useEffect(() => {
     const saved = localStorage.getItem('user')
     if (saved) setUser(JSON.parse(saved))
-  }, [])
+  }, []) 
 
   const handleFormSubmit = (message) => {  
     postThought(message, user?.accessToken) 
@@ -130,6 +130,7 @@ export function App() {
         onLike={handleLike}
         onDelete={handleDelete}
         onEdit={handleEditThought}
+        user={user}
       />
     </main>
   )

@@ -1,7 +1,7 @@
 import { ThoughtCard } from './ThoughtCard'
 import '../styles/thoughtList.css'
 
-export const ThoughtList = ({ thoughts, onLike, onEdit, onDelete }) => { 
+export const ThoughtList = ({ thoughts, onLike, onEdit, onDelete, user }) => { 
   return (
     <section className="thought-list">
       {thoughts.length === 0 ? (  
@@ -14,6 +14,7 @@ export const ThoughtList = ({ thoughts, onLike, onEdit, onDelete }) => {
             onLike={onLike}
             onEdit={onEdit}
             onDelete={onDelete} 
+            user={user}
           />
         ))
       )}

@@ -35,7 +35,7 @@ export const SignupForm = ({ handleLogin }) => {
       }
 
       const resJson = await response.json();
-      console.log(resJson)
+      
       if (!resJson.success) {
         throw new Error(resJson.message || "Failed to create user");
       }
@@ -51,6 +51,7 @@ export const SignupForm = ({ handleLogin }) => {
     }
   };
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -84,7 +85,7 @@ export const SignupForm = ({ handleLogin }) => {
       </div>
 
       <button type="submit">Sign up</button>
-      {error && <p className="error-message" role="alert" aria-live="assertive">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </form>
   );
 };

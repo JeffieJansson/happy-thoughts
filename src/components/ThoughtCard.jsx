@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ReactTimeAgo from 'react-timeago'
 import '../styles/thoughtCard.css'
 
-export const ThoughtCard = ({ thought, onLike, onEdit, onDelete }) => {
+export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
 
   const [isEditing, setIsEditing] = useState(false)
   const [editedMessage, setEditedMessage] = useState(thought.message)
@@ -38,14 +38,15 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete }) => {
         </button>
         <button className="cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
       </div>
-    ) : (
-      <p className="message">{thought.message}</p>
-    )}
+      ) : (
+        <p className="message">{thought.message}</p>
+      )}
 
-
-      <div className="meta"> 
-        <div className="thought-actions">
-
+    
+    <div className="meta"> 
+    <div className="thought-actions">
+      {user && (
+       <>
         <button
           className="edit-button"
           onClick={() => setIsEditing(true)}
@@ -53,7 +54,6 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete }) => {
         >
           ✏️
         </button>
-
         <button
           className="delete-button"
           onClick={() => {
@@ -63,9 +63,9 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete }) => {
           aria-label="Delete this thought"
         >
           🗑️
-
         </button>
-
+       </>
+      )}
         </div>
         <button
           className={`like-button ${hasLiked ? 'liked' : ''}`}
