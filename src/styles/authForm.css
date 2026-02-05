@@ -6,10 +6,9 @@
 
 .auth-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2rem;
-  
+  grid-template-rows: 1fr;
+  justify-content: center;
+   margin-bottom: 2rem;
 }
 
 .login-form,
@@ -21,11 +20,11 @@
   margin-bottom: 24px;
 }
 
-
-
 .login-form h2,
 .signup-form h2 {
   margin: 0;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 .login-form button,
@@ -35,9 +34,11 @@
   text-transform: uppercase;
 }
 
-.logout-button:hover {
+
+.logout-button {
   color: var(--text);
   background-color: var(--button);
+  margin: 0 0 1rem 0;
 }
 
 .login-inputs {
@@ -51,6 +52,24 @@
   gap: 0.25rem;
 }
 
+.auth-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.toggle-authform {
+  cursor: pointer;
+  font-size: 0.9rem;
+  vertical-align: middle;
+  margin-left: 0;
+}
+
+.toggle-authform:hover {
+  text-decoration: underline;
+  color: #185df1;
+}
 .edit-button,
 .delete-button {
   background: none;
