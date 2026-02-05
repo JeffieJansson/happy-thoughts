@@ -18,8 +18,6 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
 
   if (deleted) return null;
 
-
-
   return (
     <article className="thought">
      {isEditing ? (
@@ -27,6 +25,7 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
         <input
           value={editedMessage}
           onChange={e => setEditedMessage(e.target.value)}
+          aria-label="Edit thought message"
         />
         <button 
           className="save-button" 
@@ -36,16 +35,21 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
         }}>
           Save
         </button>
-        <button className="cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
+        <button 
+           className="cancel-button" 
+           onClick={() => setIsEditing(false)}
+           >
+            Cancel
+        </button>
       </div>
+      
       ) : (
         <p className="message">{thought.message}</p>
       )}
 
-    
-    <div className="meta"> 
-    <div className="thought-actions">
-      {user && (
+      <div className="meta"> 
+      <div className="thought-actions">
+    {user && (
        <>
         <button
           className="edit-button"
@@ -65,20 +69,20 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
           🗑️
         </button>
        </>
-      )}
-        </div>
+    )}
+      </div>
         <button
           className={`like-button ${hasLiked ? 'liked' : ''}`}
           onClick={handleLike}
           aria-label={`Like this thought (${thought.hearts ?? 0} likes)`}
           disabled={hasLiked} 
         >
-          <img src="./heart.png" alt="heart icon" className="hearts" />
+        <img src="./heart.png" alt="heart icon" className="hearts" />
         </button>
         
-        <span className="likes">x{thought.hearts ?? 0}</span>
-        
+        <span className="likes">x{thought.hearts ?? 0}</span>    
         <span className="thought-time">
+          
           {thought.createdAt ? <ReactTimeAgo date={thought.createdAt} /> : ''}
         </span>
       </div>
