@@ -11,6 +11,7 @@ export function App() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [user, setUser] = useState(null)
+  const [isSigningUp, setIsSigningUp] = useState(true);
 
 
   useEffect(() => { 
@@ -114,17 +115,30 @@ export function App() {
         {user ? (
           <button className="logout-button" onClick={handleLogout}>Logout</button>
         ) : (
-          
-          <>
-          <div className="auth-container">
-            <SignupForm handleLogin={handleLogin} />
-            <LoginForm handleLogin={handleLogin} />
-              </div>
-          </>
-        )}
-    
+        <div className="auth-container">
+           {isSigningUp ? (
+        <>
+          <SignupForm handleLogin={handleLogin} />
+          <span className="toggle-authform" onClick={() => setIsSigningUp(!isSigningUp)}>
+            Already have an account? Log in
+          </span>
+        </>
+      ) : (
+        <>
+          <LoginForm handleLogin={handleLogin} />
+          <span className="toggle-authform" onClick={() => setIsSigningUp(!isSigningUp)}>
+            Don't have an account? Sign up
+          </span>
+        </>
+      )}
+    </div>
+  )}
+
+    {user &&
       <ThoughtForm 
-        onAdd={handleFormSubmit} />
+        onAdd={handleFormSubmit} 
+        />}
+
       <ThoughtList 
         thoughts={thoughts} 
         onLike={handleLike}
