@@ -36,9 +36,12 @@ export const LoginForm = ({ handleLogin }) => {
       }
 
       const data = await response.json();
+
       handleLogin(data.response);
+
+      //reset form
       e.target.reset();
-      setFormData({ email: "", password: "" });
+      
 
     } catch (error) {
       setError("Invalid email or password");
@@ -46,6 +49,7 @@ export const LoginForm = ({ handleLogin }) => {
     }
   };
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -77,7 +81,7 @@ export const LoginForm = ({ handleLogin }) => {
         </label>
       </div>
 
-      {error && <p className="error-message" role="alert" aria-live="assertive">{error}</p>}
+      {error && <p className="error-message">{error}</p>}
 
       <button type="submit">Log In</button>
     </form>
