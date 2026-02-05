@@ -19,7 +19,7 @@ export async function postThought(message, token) {
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      Authorization: token
+      Authorization: `Bearer ${token}`
     },
     body: JSON.stringify({ message }),
   })
@@ -32,7 +32,7 @@ export async function editThought(thoughtId, newMessage, token) {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: token
+      Authorization: `Bearer ${token}`,
 },
     body: JSON.stringify({ message: newMessage }),
   })
@@ -50,7 +50,7 @@ export async function deleteThought(thoughtId, token) {
   const res = await fetch(`${API_URL}/thoughts/${thoughtId}`, { 
     method: 'DELETE',
     headers: {
-      Authorization: token
+      Authorization: `Bearer ${token}`
     }
   })
   return handleResponse(res)
