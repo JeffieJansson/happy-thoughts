@@ -1,6 +1,16 @@
 # Happy Thoughts
 
-A Twitter-inspired positive thoughts sharing app built with React. Users can post happy thoughts (5-140 characters) and like others' thoughts. The app features real-time validation, character counting, and a responsive design.
+## What is Happy Thoughts?
+
+Happy Thoughts is a positive social app inspired by Twitter, where users can share happy thoughts and spread joy. You can:
+- Create an account and log in
+- Write and post your own happy thoughts (5–140 characters)
+- See other users' thoughts and like them with a heart
+- Edit and delete your own thoughts
+- Get instant feedback on your input and see how many characters you have left
+- Enjoy real-time updates and a responsive design
+
+The app is built with React and communicates with a backend API to handle authentication, storage, and retrieval of thoughts. Everything is designed to be simple, accessible, and fun to use!
 
 ## Project Overview
 
@@ -18,23 +28,26 @@ Happy Thoughts is a React application that allows users to share what makes them
 
 ## Requirements Fulfilled
 
-### Core Requirements (7/7)
-
-- ✅ **Responsive Design**: App is fully responsive from 320px to 1600px+ width
-- ✅ **Form Functionality**: Text area with submit button that empties form after submission
-- ✅ **Clean Code**: Well-structured, commented code following best practices and DRY principles
-- ✅ **API Integration**: Posts new thoughts to API on form submission
-- ✅ **Thought Listing**: Displays thoughts with newest first, updates after submission
-- ✅ **Display Message & Likes**: Shows thought content and like count for each thought
-- ✅ **Like Functionality**: Heart button that sends likes and updates count in real-time
-
-### Stretch Goals (3/5 - Minimum 2 Required) 
-
-- ✅ **Character Counter**: Live count of remaining characters, turns red when over 140
-- ✅ **Validation Error Messages**: User-friendly error messages for invalid input (empty, too short, too long)
-- ✅ **Loading States**: Loading indicators during API calls with error handling
-- ❌ Animation for new thoughts - not implemented
-- ❌ Keep count av different liked posts + localStorage - not implemented
+- ✅ **API Documentation**: Express List Endpoints documents all available routes.
+- ✅ **Read Thoughts**: `/thoughts` (GET) returns all thoughts.
+- ✅ **Read Single Thought**: `/thoughts/:id` (GET) returns a specific thought.
+- ✅ **Like Thought**: `/thoughts/:id/like` (PATCH) increments hearts.
+- ✅ **Authenticated Create/Update/Delete**: Creating, updating, and deleting thoughts require login (accessToken in Authorization header).
+- ✅ **Signup & Login**: `/user/signup` and `/user/login` endpoints with password encryption (bcrypt).
+- ✅ **RESTful API**: All endpoints follow REST conventions.
+- ✅ **Clean Code**: Follows best practices, DRY, and clear error handling.
+- ✅ **Mongoose Models**: Thought and User models used for all DB operations.
+- ✅ **Validation**: Backend validates message length, unique email, password length, and returns clear errors.
+- ✅ **Error Handling**: All routes return proper status codes and error messages.
+- ✅ **Frontend Features**: Update and delete thoughts, signup/login, error handling, and token persistence.
+- ✅ **Password Encryption**: Passwords are hashed with bcrypt.
+- ✅ **Deployment**: Backend deployed to Render.
+- ✅ **Frontend/Backend Sync**: All backend features are reflected in the frontend.
+- ✅ **Character Counter**: Live character count and validation in frontend.
+- ✅ **Validation Error Messages**: API error messages shown next to relevant fields in frontend.
+- ✅ **Token Persistence**: Token stored in localStorage and sent in headers for logged-in state.
+- ✅ **Filtering**: Backend supports filtering thoughts by number of hearts.
+- ✅ **Loading States**: Frontend shows loading indicators and error messages.
 
 ## Technologies Used
 
@@ -44,21 +57,6 @@ Happy Thoughts is a React application that allows users to share what makes them
 - **CSS** - Vanilla css for styling in this project
 - **Vite** - Build tool and development server
 
-## Component Architecture
-
-```
-App.jsx (Main container)
-├── State Management (thoughts, loading, error)
-├── API Integration (fetch, post, like)
-├── ThoughtForm.jsx (Create new thoughts)
-│   ├── Controlled input with validation
-│   ├── Character counter
-│   └── Error messages
-└── ThoughtList.jsx (Display thoughts)
-    └── ThoughtCard.jsx (Individual thought)
-        ├── Like button with spam prevention
-        └── Relative timestamps
-```
 
 ## Project Structure
 
@@ -70,9 +68,13 @@ src/
 └── components/
     ├── ThoughtForm.jsx 
     ├── ThoughtList.jsx  
-    └── ThoughtCard.jsx  
+    |── ThoughtCard.jsx 
+    ├── LoginForm.jsx 
+    └── SignupForm.jsx
+
 └── styles/
-├── index.css          
+├── authForm.css   
+|── index.css        
 ├── ThoughtForm.css           
 ├── ThoughtList.css          
 ├── ThoughtCard.css           
@@ -82,28 +84,32 @@ src/
 
 ### Validation Logic
 
-- Minimum 5 characters, maximum 140 characters
-- Real-time validation with visual feedback
+- Minimum 5 characters, maximum 140 characters (validated both in frontend and backend)
+- Real-time validation with visual feedback in frontend
+- Backend returns error messages for invalid input (shown in frontend)
 - Submit button disabled only when typing invalid length (not when empty)
 - Trim whitespace before submission (     hey) becomes (hey)
 
 ### State Management
 
-- Global state in App.jsx for thoughts, loading, and error
+- Global state in App.jsx for thoughts, loading, error, and user authentication
 - Local state in ThoughtCard for like spam prevention
 - Functional setState to avoid race conditions
+- User state synced with localStorage and backend token
 
 ### API Error Handling
 
 - Centralized error handling in `handleResponse` helper
-- User-friendly error messages
+- User-friendly error messages from backend shown in frontend
 - Console logging for debugging
+- Handles authentication errors (e.g. invalid token, expired session)
 
 ### Accessibility
 
 - ARIA labels on interactive elements
 - aria-live regions for dynamic content updates
 - Semantic HTML structure
+- Error messages and validation feedback are accessible
 
 ---
 Built with ❤️ as part of Technigo Bootcamp
