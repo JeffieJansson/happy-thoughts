@@ -59,10 +59,9 @@
   cursor: pointer;
   font-size: 16px;
   transition: color 0.2s ease;
-
 }
 
-.thought-actions {
+.thought-edit {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -74,6 +73,10 @@
 input {
   margin-bottom: 8px;
   font-size: 16px;
+  flex: 1;
+  width: 75%;
+  min-width: 0;
+  z-index: 1;
 }
 
 .save-button,
@@ -84,4 +87,37 @@ input {
   cursor: pointer;
   font-size: 14px;
   border-radius: 4px;
+}
+
+
+@media (min-width: 375px) and (max-width: 768px) {
+
+  .thought-edit {
+    position: absolute;
+    z-index: 2;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .thought-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+
+  .edit-actions {
+    display: flex;
+    gap: 8px;
+  }
+
+   .meta {
+    padding-right: 60px;
+  }
+
+  .button-wrapper {
+    display: flex;
+    gap: 6px;
+  }
 }

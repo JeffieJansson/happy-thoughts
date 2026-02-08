@@ -21,12 +21,13 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
   return (
     <article className="thought">
      {isEditing ? (
-      <div>
+      <div className="thought-actions">
         <input
           value={editedMessage}
           onChange={e => setEditedMessage(e.target.value)}
           aria-label="Edit thought message"
         />
+        <div className="edit-actions">
         <button 
           className="save-button" 
           onClick={() => {
@@ -41,6 +42,7 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
            >
             Cancel
         </button>
+        </div>
       </div>
       
       ) : (
@@ -48,9 +50,10 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
       )}
 
       <div className="meta"> 
-      <div className="thought-actions">
+      <div className="thought-edit">
     {user && (
        <>
+       <div className="button-wrapper">
         <button
           className="edit-button"
           onClick={() => setIsEditing(true)}
@@ -68,6 +71,7 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
         >
           🗑️
         </button>
+        </div>
        </>
     )}
       </div>
