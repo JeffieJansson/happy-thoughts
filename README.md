@@ -1,5 +1,9 @@
 # Happy Thoughts
 
+**backend github link**
+https://github.com/JeffieJansson/ht-project-api
+
+---
 ## What is Happy Thoughts?
 
 Happy Thoughts is a positive social app inspired by Twitter, where users can share happy thoughts and spread joy. You can:
