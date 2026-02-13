@@ -22,6 +22,7 @@ export const ThoughtCard = ({ thought, onLike, onEdit, onDelete, user }) => {
       {isEditing ? (
         <div className="thought-actions">
           <input
+            className="edit-textarea"
             value={editedMessage}
             onChange={e => setEditedMessage(e.target.value)}
             aria-label="Edit thought message"
